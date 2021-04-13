@@ -45,18 +45,7 @@
 
 			<div class="col-md-6">
 				
-				<div class="mt-3 mb-4">
-					<label for="birthday">{{ __('Birthday') }}</label>
-					<div class="form-group">
-						<input id="dob" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ $users->birthday }}" required  autofocus>
 
-                                @error('birthday')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-					</div>
-				</div>
 
 				<div class="mb-2">
 					<label for="gender">{{ __('Gender') }}</label>

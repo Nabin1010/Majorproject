@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Session;
 
 class FoodController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -147,19 +151,7 @@ class FoodController extends Controller
         return redirect('/foods');
     }
     
-    public function Search(Request $request){
-        // Get the search value from the request
-    $search = $request->input('search');
 
-    // Search in the title and body columns from the posts table
-    $foods = Food::query()
-        ->where('title', 'LIKE', "%{$search}%")
-        ->orWhere('price', 'LIKE', "%{$search}%")
-        ->get();
-
-    // Return the search view with the resluts compacted
-    return view('menu', compact('foods'));
-}
 
     }
     

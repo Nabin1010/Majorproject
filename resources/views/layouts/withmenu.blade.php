@@ -1,11 +1,13 @@
-<?php 
+<?php
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CartController;
-$total=0;
+$total = 0;
 if (Auth::check()) {
-  $total= CartController::cartItem();
+$total = CartController::cartItem();
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -21,48 +23,37 @@ if (Auth::check()) {
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="frontend/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="frontend/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
-
-
-    <!-- Humberger Begin -->
-
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                <h4>
-                    <a href="http://">Digital Food</a>
-                </h4>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ route('home') }}">Digital Food</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('home') }}">Home <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('menus') }}">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('myorder') }}">My Order</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                            @guest
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+                        @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -72,61 +63,45 @@ if (Auth::check()) {
                                 </li>
                             @endif
                         @else
-                            <li class="header__menu__dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
-                                <div class="header__menu__dropdown" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
-
-
-								
-								<a class="header__menu__dropdown" href="{{ route('user.profile',Auth::user()->id) }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('user-profile').submit();">
+                                    <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('user-profile').submit();">
                                         {{ __('Profile') }}
                                     </a>
-
-
-									
-
-                                    <form id="user-profile" action="{{ route('user.profile',Auth::user()->id) }}" method="get" style="display: none;">
+                                    <form id="user-profile" action="{{ route('user.profile', Auth::user()->id) }}"
+                                        method="get" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                            @endguest
+                            <a href="{{ route('cartlist') }}" class="btn btn-info btn-lg"> Shopping Cart
+                                <span class="glyphicon glyphicon-shopping-cart">({{ $total }})</span>
+                            </a>
                         </ul>
-                    </nav>
                 </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul> 
-                        <div class="col-lg-3">
-                            <div class="header__cart">
-                                <ul>
-                                    <li><a href="{{route('cartlist')}}"><i class="fa fa-shopping-bag"></i> <span>{{$total}}</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
+
+
+                
         </div>
-    </header>
+        </nav>
+    </div>
+    </div>
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
@@ -149,27 +124,7 @@ if (Auth::check()) {
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>9866951623</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div>
+
                 <main class="py-4">
                     @yield('withmenu')
                 </main>
@@ -186,51 +141,39 @@ if (Auth::check()) {
 
 
     <!-- Footer Section Begin -->
-    <footer class="footer spad">
+    <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class=" col-md-4">
                     <div class="footer__about">
                         <h4>
-                            <a href="http://">Digital Food</a>
+                            <a href="{{ route('home') }}">Digital Food</a>
                         </h4>
                         <ul>
                             <li>Address: Devkota sadak ,Baneshwor</li>
                             <li>Phone: 9866951623</li>
-                            <li> <spam>Email: applet@apexcollege.edu.np</spam></li>
+                            <li>
+                                <spam>Email: applet@apexcollege.edu.np</spam>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Useful Links</h6>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-4 ">
+                    <h6>Useful Links</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">About Our Shop</a></li>
+                        <li><a href="#">Secure Shopping</a></li>
+                        <li><a href="#">Delivery infomation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Our Sitemap</a></li>
+                    </ul>
                 </div>
-
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-4">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="apexcollege.edu.np" target="_blank">Major project</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <!-- <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div> -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.5935373620614!2d85.33578537404533!3d27.698954904849987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaf36b9b58903050f!2sAPEX%20COLLEGE!5e0!3m2!1sen!2snp!4v1617705558788!5m2!1sen!2snp"
+                            width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -239,14 +182,6 @@ if (Auth::check()) {
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="frontend/js/jquery-3.3.1.min.js"></script>
-    <script src="frontend/js/bootstrap.min.js"></script>
-    <script src="frontend/js/jquery.nice-select.min.js"></script>
-    <script src="frontend/js/jquery-ui.min.js"></script>
-    <script src="frontend/js/jquery.slicknav.js"></script>
-    <script src="frontend/js/mixitup.min.js"></script>
-    <script src="frontend/js/owl.carousel.min.js"></script>
-    <script src="frontend/js/main.js"></script>
 
 
 

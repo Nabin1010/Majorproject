@@ -100,14 +100,36 @@
 					</div>	
 					</div>
 				<hr>
-				<div class="row mt-3">
-					<h4>Payment Methods</h4>
-					<div class="col-12 text-center">
-						<div class="col-md-4">
-							<i class="far fa-credit-card fa-3x " style="color: #188d8a;"></i>
-							<p class="small-text">Cash on Delivery</p>
-						</div>
-					</div>
+				<div class="row">
+					<form action="{{ route('bcheckout') }}" method ="post" >
+					@csrf   
+					<div class="row mt-3">
+						<div class="contact_form_title text-center">Payment BY</div>
+							<div class="form-group">
+								<ul class="logos_list">
+									<li><input type="radio" name="payment" value="stripe" checked><img src="{{ asset('/images/stripe.png') }}" style="width:106px; height:86px;"></li>
+									<li><input type="radio" name="payment" value="oncash">  <img src="{{ asset('/images/cod.jpg') }}" style="width:135px; height:55px;"></li>
+									
+		
+								</ul>
+							</div>
+					</div> 
+					<input type="hidden" name="price" value="{{$total -($total *0.1)}} ">  
+					@if(isset($quantity))
+					<input type="hidden" name="quantity" value="{{$quantity}} ">  
+					@endif
+					@if(isset($hhh))                        
+					<input type="hidden" name="address" value="{{$hhh->id}} ">
+					@elseif(isset($abc))
+					<input type="hidden" name="address" value="{{$abc->id}} ">
+					@else
+					<input type="hidden" name="address" value="{{$shippingaddress->id}} ">
+					@endif 
+					@if(isset($food)) 
+					<input type="hidden" name="food_id" value="{{$food->id}} ">
+					@endif
+					<button type="submit" class="btn btn-primary b-block mx-auto" >Proceed to pay</button>
+					</form>
 				</div>
 			
 			</div>
@@ -175,20 +197,7 @@
 		</div>
 		
 		<hr>
-		<div class="row">
-			<form action="{{ route('buyPlace')}}" method ="post" >
-			@csrf    
-			<input type="hidden" name="price" value="{{$total -($total *0.1)}} ">  
-			<input type="hidden" name="quantity" value="{{$quantity}} ">  
-			@if(isset($hhh))                        
-			<input type="hidden" name="address" value="{{$hhh->id}} ">
-			@endif 
-			@if(isset($food)) 
-			<input type="hidden" name="food_id" value="{{$food->id}} ">
-			@endif
-			<button type="submit" class="btn btn-primary b-block mx-auto" >Confirm Order</button>
-			</form>
-		</div>
+
 	</div>
 
 

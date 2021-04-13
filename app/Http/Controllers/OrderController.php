@@ -33,6 +33,9 @@ class OrderController extends Controller
     function orderNow(Request $request){
         if (Auth::check()){
             $userID =Auth::user()->id;
+            $state_list = DB::table('addresses')
+           ->groupBy('state')
+           ->get();
                  $hhh =Shippingaddress::where('id',$request->shippAddr)->first();
                $shippingaddress = Shippingaddress::where('user_id',$userID)->where('is_home','=','1')->get();
                 $abc = Shippingaddress::where('user_id',Auth::user()->id)->first();
@@ -46,7 +49,7 @@ class OrderController extends Controller
                     ->where('carts.user_id',$userID)
                     ->sum('carts.price');
             
-                     return view('cart.ordernow',compact('carts','shippingaddress','total','hhh','abc'));       
+                     return view('cart.ordernow',compact('carts','shippingaddress','total','hhh','abc','state_list'));       
 
              }
         
@@ -57,10 +60,9 @@ class OrderController extends Controller
     }
 
     function orderPlace(Request $request){
-        // return $request;
-       
-                $hhh =Shippingaddress::where('id',$request->address)->first();
-                $abc = Shippingaddress::where('user_id',Auth::user()->id)->first();
+        //  return $request;
+            $hhh =Shippingaddress::where('id',$request->address)->first();
+            $abc = Shippingaddress::where('user_id',Auth::user()->id)->first();
                 $userID = Auth::user()->id;
                 $shippingaddress = Shippingaddress::where('user_id',$userID)->where('is_home','=','1')->get();
                 $allCart= Cart::where('user_id',$userID)->get();
@@ -68,7 +70,7 @@ class OrderController extends Controller
                 $order = new Order();
                 $order->user_id=$userID;
                 $order->status="pending";
-                $order->payment_method="cash on delivery";
+                $order->payment_method="card";
                 $order->payment_status="pending";
                 if($request->address){
                    
@@ -168,6 +170,7 @@ class OrderController extends Controller
     }
 
     function buyPlace(Request $request){
+        // return $request;
             $hhh =Shippingaddress::where('id',$request->address)->first();
             $userID = Auth::user()->id;
             $abc = Shippingaddress::where('user_id',Auth::user()->id)->first();
@@ -176,7 +179,7 @@ class OrderController extends Controller
                 $order = new Order();
                 $order->user_id=$userID;
                 $order->status="pending";
-                $order->payment_method="cash on delivery";
+                $order->payment_method="card";
                 $order->payment_status="pending";
                 if($request->address){
                    

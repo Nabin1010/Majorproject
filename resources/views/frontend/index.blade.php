@@ -61,7 +61,7 @@
 				@foreach($foods as $food)
 				<div class="col-md-3 menu-item p-1">
 					<div class="card">
-						<a href="#"><img src="{{ url('/images/foods/'.$food->photo) }}" class="card-img-top" alt=""></a>
+						<a href="#"><img src="{{ url('/images/foods/'.$food->photo) }}" class="card-img-top" alt="" width="100px" height="150px"></a>
 						<div class="card-body">
 							<h5 class="card-title menu-caption"><a href="#">{{$food->title}}</a> <span
 									class="price">NRs.
@@ -94,56 +94,7 @@
 
 
     <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Foods</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            @if(isset($latestfoods))
-                            @foreach($latestfoods as $food)
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="{{ url('/images/foods/'.$food->photo) }}" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>{{$food->title}}</h6>
-                                        <span>${{$food->price}}</span>
-                                    </div>
-                                </a>
-                            </div>
-                            @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Top Order Food</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            @if(isset($latestfoods))
-                            @foreach($latestfoods as $food)
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="{{ url('/images/foods/'.$food->photo) }}" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>{{$food->title}}</h6>
-                                        <span>${{$food->price}}</span>
-                                    </div>
-                                </a>
-                            </div>
-                            @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- Latest Product Section End -->
 
     <!-- Blog Section Begin -->

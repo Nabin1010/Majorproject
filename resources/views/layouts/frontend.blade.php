@@ -23,15 +23,9 @@ $total = CartController::cartItem();
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -84,7 +78,7 @@ $total = CartController::cartItem();
                                         style="display: none;">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-menu" href="{{ route('user.profile', Auth::user()->id) }}"
+                                    <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}"
                                         onclick="event.preventDefault();
                                             document.getElementById('user-profile').submit();">
                                         {{ __('Profile') }}
@@ -154,13 +148,7 @@ $total = CartController::cartItem();
     </footer>
 
     <!-- Js Plugins -->
-    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('frontend/js/mixitup.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
+
 
 
 

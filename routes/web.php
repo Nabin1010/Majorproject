@@ -42,7 +42,7 @@ Route::get('/removecart/{id}','CartController@removeCart')->name('removecart');
 Route::post('/updatecart/{id}','CartController@updateCart')->name('updatecart');
 
 
-Route::Post('/orderPlace','OrderController@orderPlace')->name('orderPlace');
+Route::post('/orderPlace','OrderController@orderPlace')->name('orderPlace');
 Route::Post('/buyPlace','OrderController@buyPlace')->name('buyPlace');
 Route::get('/myorders','OrderController@Myorder')->name('myorder');
 Route::get('/ordernow','OrderController@orderNow')->name('ordernow');
@@ -53,7 +53,7 @@ Route::put('/orderupdate/{id}','OrderController@OrderUpdate')->name('order.updat
 
 Route::get('/menus','FrontendController@menus')->name('menus');
 
-Route::get('/search', 'FoodController@Search')->name('search');
+Route::get('/search', 'FrontendController@Search')->name('search');
 
 
 Route::get('/verify','VerifyController@getVerify')->name('getverify');
@@ -104,5 +104,8 @@ Route::prefix('admins')->group(function() {
 // Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 // Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
+Route::post('/checkout', 'CheckoutController@Checkout')->name('checkout');
+
+Route::post('/bcheckout', 'CheckoutController@Bcheckout')->name('bcheckout');
 
 

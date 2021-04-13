@@ -32,10 +32,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-4">
-				<p>Birthday</p> 
-				<p class="lead">{{$user->birthday}}</p>
-			</div>
+
 			<div class="col-md-4">
 				<p>Gender</p> 
 				<p class="lead">{{$user->gender}}</p>
