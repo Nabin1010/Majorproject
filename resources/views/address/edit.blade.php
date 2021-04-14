@@ -1,5 +1,5 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
 
 <form method ='post' action="{{ route('address.update',$address->id)}}"enctype="multipart/form-data">
 @csrf
@@ -32,3 +32,4 @@
     </div>
     <button type="submit" class="btn btn-primary">submit</button>
 </form>
+@endsection

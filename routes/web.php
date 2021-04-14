@@ -28,7 +28,7 @@ Route::resource('/foods','FoodController');
 
 Route::resource('/','FrontendController');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'FrontendController@index')->name('home');
 
@@ -107,5 +107,16 @@ Route::prefix('admins')->group(function() {
 Route::post('/checkout', 'CheckoutController@Checkout')->name('checkout');
 
 Route::post('/bcheckout', 'CheckoutController@Bcheckout')->name('bcheckout');
+
+Route::get('myorder/{id}','OrderController@cancelled')->name('ordercancelled');
+ Route::get('/orderlist','AdminController@orderlist')->name('orderlist');
+
+ Route::get('/send','SendEmailController@index')->name('contactus');
+ Route::post('/send','SendEmailController@send')->name('sendemail');
+
+
+Route::get('/forget-password', 'ForgotPasswordController@getEmail');
+Route::post('/forget-password', 'ForgotPasswordController@postEmail');
+
 
 

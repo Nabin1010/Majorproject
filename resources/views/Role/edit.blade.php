@@ -1,5 +1,5 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
 
 <div class="col-md-12">
     <div class="row justify-content-center"><h1>edit the post</h1></div> 
@@ -16,3 +16,4 @@
     </form>   
     {{-- </div>   --}}
 </div>
+@endsection

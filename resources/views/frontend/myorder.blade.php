@@ -14,6 +14,7 @@
       <th scope="col">phonenumber</th>
       <th scope="col">price</th>
       <th scope="col">Order Date & Time</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
     <tbody>
@@ -36,6 +37,18 @@
         <td>{{$order->phonenumber}}</td>
         <td>{{$order->price}}</td>
         <td>{{$order->created_at}}</td>
+        <td>
+          @if($order->status =="pending")
+              <form action="{{ route('ordercancelled', $order->id) }}" method="get">
+                  {{ csrf_field() }}
+                  <button class="btn btn-danger">Cancel Order</button>
+              </form>
+              @elseif($order->status =="Dropped")
+              <button class="btn btn-default" disabled>Order Cancelled</button>
+              @else
+              <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Confirmed/Dispatched Order can't be cancelled" disabled>Cancel Order</button>
+              @endif
+          </td>
       </tr>
   @endforeach 
     </tbody>

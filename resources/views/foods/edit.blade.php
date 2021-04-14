@@ -35,18 +35,38 @@
 
                     </div>
 
-                    @if(isset($categories))
-                   <div class="form-group">
-                        <label for="category_id">Category</label>
-                        <select class="form-control" name="cat_id" value="">
-                            <option  selected>{{$foods->category->title}}</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id}}">{{ $category->title}}</option>
-                            @endforeach
-                        </select>
-                    </div> 
-                    @endif
+                    @if (isset($categories))
+                <div class="form-group">
+                    <label for="category_id">Category</label>
+                    <select class="form-control" name="cat_id" id="category">
+                        @foreach ($categories as $category)
+                        @if ($category->id == $foods->category->id)
+                            
+                        <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
+                        @else
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                </div>
+            @endif
         </div>
     </div>
     <button type="submit" class="btn btn-primary">submit</button>
 </form>
+<script type="text/javascript">
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+            
+        reader.onload = function (e) {
+            $('#profile-img-tag').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#profile-img").change(function(){
+    readURL(this);
+});
+
+</script>

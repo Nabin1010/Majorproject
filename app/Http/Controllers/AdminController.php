@@ -21,15 +21,22 @@ class AdminController extends Controller
     public function index()
     {
         if (Auth::check()) {
-           
-        
-                 $myorders = Order::with('foods','user')->latest()->get();
-                return view('admin.index',compact('myorders'));
+                $totalusers = DB::table('users')->count();
+                $totalfoods = DB::table('foods')->count();
+                $totalrevenue = DB::table('orders')->sum('price');
+                $totalorder= DB::table('orders')->count();
+                $myorders = Order::with('foods','user')->latest()->get();
+                return view('admin.index',compact('myorders','totalusers','totalfoods','totalrevenue','totalorder'));
                 } 
                 else {
                         return view("sorry");
                     }
            
+    }
+
+    public function orderlist(){
+        $myorders = Order::with('foods','user')->latest()->get();
+        return view('order.orderlist',compact('myorders'));
     }
 
     /**

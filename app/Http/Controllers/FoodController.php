@@ -25,12 +25,10 @@ class FoodController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role_id==1) {
+      
         $foods = Food::with('category')->get();
         return view('foods.index',compact('foods'));
-    } else {
-        return view("sorry");
-       }
+   
     }
 
     /**
@@ -40,13 +38,11 @@ class FoodController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->role_id==1) {
+       
 
         $categories = Category::all();
         return view('foods.create',compact('categories'));
-    } else {
-        return view("sorry");
-       }
+  
     }
 
     /**
@@ -57,7 +53,7 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->role_id==1) {
+        
 
         $validated = $request->validate([
             'title' => 'required',
@@ -76,10 +72,7 @@ class FoodController extends Controller
              Food::create($foods);
              return redirect('/foods');
        
-    } 
-    else {
-        return view("sorry");
-       }
+   
     }
 
     /**

@@ -1,6 +1,6 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
 @if (Session()->has('success'))
           <div class="alert alert-sucess">
               {{Session('success')}}
@@ -58,3 +58,4 @@
   </tbody>
 </table>
 </body>
+@endsection

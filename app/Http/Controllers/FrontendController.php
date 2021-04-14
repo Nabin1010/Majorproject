@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,17 +21,9 @@ class FrontendController extends Controller
      */
     public function index()
     {
-    //    $categories = DB::table('foods')
-    //     ->join('categories' ,'foods.cat_id','=','categories.id')
-    //     ->select('foods.*','categories.*','foods.title as ftitle')
-    //     ->get();
-
          $foods = Food::take(4)->get();
          $latestfoods = Food::take(4)->latest()->get();
          $categories = Category::all();
-        //  return $foods;
-    //    $categories= Category::with('foods')->get();
-    //    return $categories;
         return view('frontend.index',compact('categories','foods','latestfoods'));
     }
 
@@ -100,7 +96,7 @@ class FrontendController extends Controller
         //   return $id;
         $foods = Food::with('category')->where('cat_id',$id)->get();
         $categories = Category::get();
-        return view('fmenusrontend.singlecategory',compact('foods','categories'));
+        return view('frontend.singlecategory',compact('foods','categories'));
     }
     public function menus(){
         $foods = Food::all();
@@ -121,7 +117,7 @@ class FrontendController extends Controller
         ->get();
 
     // Return the search view with the resluts compacted
-    return view('menu', compact('foods'));
+    return view('layouts.withmenu', compact('foods'));
 }
 
     

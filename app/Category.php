@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Food;
+use App\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -11,6 +13,7 @@ class Category extends Model
 
     public function foods()
         {
-            return $this->hasMany('App\Food');
+            return $this->hasMany(Food::class);
         }
+
 }

@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Cart;
+use App\Food;
 use App\User;
+use App\Shippingaddress;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -13,7 +15,7 @@ class Order extends Model
     // 
     public function foods()
     {
-        return $this->belongsToMany('App\Food')->withPivot('quantity');;
+        return $this->belongsToMany(Food::class)->withPivot('quantity');;
     }
     public function user()
     {
@@ -25,7 +27,7 @@ class Order extends Model
     }
     public function shippingaddress()
     {
-        return $this->belongsTo('App\Shippingaddress');
+        return $this->belongsTo(Shippingaddress::class);
     }
     public $timestamps = true;
 }

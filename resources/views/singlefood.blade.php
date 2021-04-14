@@ -14,21 +14,7 @@
 		});
 	</script>
 
-<div id="search" class="offset">
-	<div class="container">
-		<form action="">
-			<div class="row">
-				<div class="form-group col-md-11 search-box">
-					<input type="text" name="search" placeholder="Search in digital food" class="form-control ">
-				</div>
 
-				<button type="submit" class="btn btn-primary col-md-1 search-button mb-0"><i
-						class="fas fa-search "></i></button>
-			</div>
-
-		</form>
-	</div>
-</div>
 
 <div id="item-detail" class="mt-5">
 		<div class="container">
@@ -59,7 +45,7 @@
 								
                                   <div class="row">
                                     <div class="input-group col-md-4">
-                                      <input  type="number" value="1" class="form-control prc" name ="quantity" required id="qunatity" >
+                                      <input  type="number" value="1" class="form-control prc" name ="quantity" required id="qunatity" min="1" >
 										<input type="hidden" name="food_id" value="{{$food->id}}">
 										<input type="hidden" name="food_id" value="{{$food->id}}">
                                       <span class="text-danger">{{ $errors->first('quantity')}}</span>

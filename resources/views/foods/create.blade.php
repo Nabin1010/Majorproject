@@ -1,5 +1,5 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
 
 <form method ='POST' action ="{{route('foods.store')}}" enctype="multipart/form-data">
     <div class="row"> 
@@ -46,3 +46,4 @@
     </div>
     <button type="submit" class="btn btn-primary">submit</button>
 </form>
+@endsection

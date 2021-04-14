@@ -235,4 +235,14 @@ class OrderController extends Controller
         return redirect()->route('buynow',$id);
 
     }
+    function cancelled($id){
+        
+        Order::where('id',$id)->update([
+            'is_active' => 1,
+            'status'=>'Dropped'
+        ]);
+           return redirect()->back();
+      
+
+    }
 }

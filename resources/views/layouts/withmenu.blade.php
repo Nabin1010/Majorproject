@@ -1,190 +1,89 @@
-<?php
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\CartController;
-$total = 0;
-if (Auth::check()) {
-$total = CartController::cartItem();
-}
-?>
+@extends('layouts.frontend')
+@section('frontend')
 
+    {{-- serach function start --}}
 
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Digital Food</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ route('home') }}">Digital Food</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">Home <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('menus') }}">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('myorder') }}">My Order</a>
-                        </li>
-                    </ul>
+    <div id="search" class="offset">
+        <div class="container">
+            <form action="{{route('search')}}" method="get">
+                <div class="row">
+                    <div class="form-group col-md-11 search-box">
+                        <input type="text" name="search" placeholder="Search in digital food" class="form-control ">
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary col-md-1 search-button mb-0"><i
+                            class="fas fa-search "></i></button>
                 </div>
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                    <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}"
-                                        onclick="event.preventDefault();
-                                            document.getElementById('user-profile').submit();">
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <form id="user-profile" action="{{ route('user.profile', Auth::user()->id) }}"
-                                        method="get" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                            <a href="{{ route('cartlist') }}" class="btn btn-info btn-lg"> Shopping Cart
-                                <span class="glyphicon glyphicon-shopping-cart">({{ $total }})</span>
-                            </a>
-                        </ul>
-                </div>
-
-
-                
+    
+            </form>
         </div>
-        </nav>
     </div>
-    </div>
-    <!-- Header Section End -->
+
+    {{-- serach function end --}}
 
     <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        @if(isset($categories))
-                        @foreach($categories as $category)
-                        <ul>
-                            <li><a href="#">{{$category->title}}</a></li>
-                        </ul>
-                        @endforeach
-                        @endif
-                    </div>
-                </div>
-                <div class="col-lg-9">
+    <section>
+        @if (!$foods->isEmpty())
+        <h3 class="text-center">Menu</h3>
+            @if(isset($search))
+                <h6 class="mt-3 mb-3 ">Search result for "<strong>{{$search}}</strong>"</h6>
+            @endif
+        <div id="menu" class="mt-3 pt-2">
+            <div class="container">
 
-                <main class="py-4">
-                    @yield('withmenu')
-                </main>
+                <div class="col-12">
+                    <div class="heading-underline"></div>
+
+
+                    <div class="row">
+
+                        <!--menu item starts-->
+                        @if (isset($foods))
+                            @foreach ($foods as $food)
+                                <div class="col-md-3 menu-item p-1">
+                                    <div class="card">
+                                        <a href="{{ route('singlefood', $food->id) }}"><img
+                                                src="{{ url('/images/foods/' . $food->photo) }}" class="card-img-top"
+                                                alt="" height="200px" width="100px"></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title menu-caption"><a href="#">{{ $food->title }}</a>
+                                                <span class="price">NRs.
+                                                    {{ $food->price }}</span>
+                                            </h5>
+                                            <p class="card-text">{{ $food->details }}</p>
+                                        </div>
+                                        <div class="row mx-auto">
+                                            <form action="{{ route('addtocart', $food->id) }}" method="POST"
+                                                class="d-block ml-2 mb-0">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="food_id" value="{{ $food->id }}">
+                                                <button type="submit" class="btn btn-success">Add To Cart</button>
+                                            </form>
+                                            <form action="{{ route('singlefood', $food->id) }}" method="get"
+                                                class="d-block ml-2 mb-0">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="food_id" value="{{ $food->id }}">
+                                                <button type="submit" class="btn btn-primary">Buy Now</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @endforeach
+                        @endif
+                        <!--menu item ends-->
+                    </div>
+                    <!--row ends-->
+
+
                 </div>
             </div>
         </div>
-
+        @else
+        <div class="alert alert-danger text-center" role="alert">
+            No Record(s) Found. 
+          </div>
+    @endif
     </section>
     <!-- Hero Section End -->
-
-   
-
-
-
-
-    <!-- Footer Section Begin -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class=" col-md-4">
-                    <div class="footer__about">
-                        <h4>
-                            <a href="{{ route('home') }}">Digital Food</a>
-                        </h4>
-                        <ul>
-                            <li>Address: Devkota sadak ,Baneshwor</li>
-                            <li>Phone: 9866951623</li>
-                            <li>
-                                <spam>Email: applet@apexcollege.edu.np</spam>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 ">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <div class="footer__copyright">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.5935373620614!2d85.33578537404533!3d27.698954904849987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaf36b9b58903050f!2sAPEX%20COLLEGE!5e0!3m2!1sen!2snp!4v1617705558788!5m2!1sen!2snp"
-                            width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-
-
-
-</body>
-
-</html>
+@endsection

@@ -1,5 +1,5 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
 <table class="table table-striped">
   <thead>
     <tr>
@@ -39,3 +39,4 @@
     @endif
   </tbody>
 </table>
+@endsection

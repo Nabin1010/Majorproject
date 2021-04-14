@@ -1,5 +1,6 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@extends('layouts.admin')
+@section('admin')
+    
 <form method="post" action="{{route('address.store')}}">
 @csrf
   <div class="form-group" >
@@ -18,3 +19,4 @@
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+@endsection

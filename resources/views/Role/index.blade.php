@@ -1,6 +1,6 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<body>
+@extends('layouts.admin')
+@section('admin')
+
 <form action="{{route('roles.store')}}" method='POST'>
 @csrf
 <div class="input-group">
@@ -50,4 +50,4 @@
     @endif
   </tbody>
 </table>
-</body>
+@endsection

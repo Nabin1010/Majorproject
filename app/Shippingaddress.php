@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Order;
 use Illuminate\Database\Eloquent\Model;
 
 class Shippingaddress extends Model
@@ -10,6 +11,6 @@ class Shippingaddress extends Model
 
     public function order()
     {
-        return $this->hasOne('App\Order');
+        return $this->hasOne(Order::class);
     }
 }

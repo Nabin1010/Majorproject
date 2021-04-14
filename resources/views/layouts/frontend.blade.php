@@ -47,7 +47,10 @@ $total = CartController::cartItem();
                             <a class="nav-link" href="{{ route('menus') }}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('myorder') }}">My Order</a>
+                            <a class="nav-link" href="{{ route('myorder') }}">Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contactus') }}">Contactus</a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +73,7 @@ $total = CartController::cartItem();
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -80,7 +83,7 @@ $total = CartController::cartItem();
                                     </form>
                                     <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}"
                                         onclick="event.preventDefault();
-                                            document.getElementById('user-profile').submit();">
+                                                document.getElementById('user-profile').submit();">
                                         {{ __('Profile') }}
                                     </a>
                                     <form id="user-profile" action="{{ route('user.profile', Auth::user()->id) }}"
@@ -89,19 +92,16 @@ $total = CartController::cartItem();
                                     </form>
                                 </div>
                             </li>
-                            @endguest
-                            <a href="{{ route('cartlist') }}" class="btn btn-info btn-lg"> Shopping Cart
-                                <span class="glyphicon glyphicon-shopping-cart">({{ $total }})</span>
-                            </a>
-                        </ul>
+                        @endguest
+                        <a href="{{ route('cartlist') }}" class="btn btn-info btn-lg"> Shopping Cart
+                            <span class="glyphicon glyphicon-shopping-cart">({{ $total }})</span>
+                        </a>
+                    </ul>
                 </div>
-
-
-                
+            </nav>
         </div>
-        </nav>
     </div>
-    </div>
+
     <!-- Header Section End -->
     <main class="py-4">
         @yield('frontend')
@@ -148,12 +148,6 @@ $total = CartController::cartItem();
     </footer>
 
     <!-- Js Plugins -->
-
-
-
-
-
-
 </body>
 
 </html>
