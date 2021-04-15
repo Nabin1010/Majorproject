@@ -16,6 +16,10 @@ use Symfony\Component\Console\Input\Input;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['verified']);
+    }
     public function Orderedit(Request $request,$id)
     {
         $orders = Order::find($id);
@@ -239,7 +243,8 @@ class OrderController extends Controller
         
         Order::where('id',$id)->update([
             'is_active' => 1,
-            'status'=>'Dropped'
+            'status'=>'Dropped',
+            'payment_status'=>'order cancelled'
         ]);
            return redirect()->back();
       

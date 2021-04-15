@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['verified']);
-    }
+    
     /**
      * Display a listing of the resource.
      *

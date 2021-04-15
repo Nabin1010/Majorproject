@@ -3,7 +3,7 @@
 
 
 
-       <section class="pt-5 pb-5 mt-0 align-items-end d-flex bg-dark"
+       <section class="pt-5 pb-5 mt-0 align-items-end d-flex bg-dark
            style="min-height: 75vh; background-position: center center; background-size: cover; background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fimages%2Ffood&psig=AOvVaw1XIR6U_ITcSGxPQOrcDnDC&ust=1618464295231000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNjbqr7__O8CFQAAAAAdAAAAABAD);">
 
            <div class="container " style="">
@@ -11,7 +11,7 @@
                <div class="row mt-auto">
                    <div class="col-lg-8 col-sm-12 ">
                        <div class="text-center text-lg-left">
-                           <p class="text-uppercase text-danger font-weight-bold mb-2 text-secondary text-shadow">Your best
+                           <p class="text-uppercase text-danger font-weight-bold mb-2 text-secondary text-shadow">Your bestp
                                experience</p>
                            <h1 class="display-3 text-white font-weight-bold text-shadow">Taste like a homely food</h1>
                        </div>

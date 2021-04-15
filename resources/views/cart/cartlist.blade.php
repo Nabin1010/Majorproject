@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td data-th="Price">${{ $food->price }}</td>
+                            <td data-th="Price">RS.{{ $food->price }}</td>
                             <td data-th="quantity"> 
                               <div class="">
                                 <form action="{{route('updatecart',$food->cart_id)}}" method="post">

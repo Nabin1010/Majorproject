@@ -11,6 +11,10 @@ use Symfony\Component\Console\Input\Input;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['verified']);
+    }
     public function addToCart(Request $request , $id){
        
 

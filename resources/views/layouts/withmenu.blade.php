@@ -11,8 +11,7 @@
                         <input type="text" name="search" placeholder="Search in digital food" class="form-control ">
                     </div>
     
-                    <button type="submit" class="btn btn-primary col-md-1 search-button mb-0"><i
-                            class="fas fa-search "></i></button>
+                    <button type="submit" class="btn btn-primary col-md-1 search-button mb-0"><i class="bi bi-search"></i></button>
                 </div>
     
             </form>
