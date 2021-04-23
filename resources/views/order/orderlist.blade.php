@@ -36,7 +36,7 @@
         <td>{{$order->address}}</td>
         <td>{{$order->phonenumber}}</td>
         <td>{{$order->price}}</td> 
-        <td>{{$order->user->name}}</td>
+        <td>{{$order->user->name ?? ''}}</td>
         <td>{{$order->created_at}}</td>
         
         

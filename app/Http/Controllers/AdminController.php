@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     public function orderlist(){
-        $myorders = Order::with('foods','user')->latest()->get();
+       $myorders = Order::with('foods','user')->latest()->get();
         return view('order.orderlist',compact('myorders'));
     }
 

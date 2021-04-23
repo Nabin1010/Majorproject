@@ -11,9 +11,9 @@
                <div class="row mt-auto">
                    <div class="col-lg-8 col-sm-12 ">
                        <div class="text-center text-lg-left">
-                           <p class="text-uppercase text-danger font-weight-bold mb-2 text-secondary text-shadow">Your bestp
+                           <p class="text-uppercase text-danger font-weight-bold mb-2 text-secondary text-shadow">Your best
                                experience</p>
-                           <h1 class="display-3 text-white font-weight-bold text-shadow">Taste like a homely food</h1>
+                           <h1 class="display-3 text-white font-weight-bold text-shadow">सफा  स्वस्थ  घरको खाना</h1>
                        </div>
 
                    </div>

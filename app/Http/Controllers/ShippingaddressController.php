@@ -45,7 +45,7 @@ class ShippingaddressController extends Controller
             // return $url=url()->previous();
            $shippingaddress=$request->all();
            Shippingaddress::create($shippingaddress);
-           return redirect()->route('setaddress');
+           return redirect()->back();
        
     }
 

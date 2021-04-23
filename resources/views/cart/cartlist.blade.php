@@ -53,7 +53,7 @@
                                 @csrf
                                   <div class="row">
                                     <div class="input-group">
-                                      <input  type="number" value="{{ $food->cart_qty }}" class="form-control prc" name ="quantity" required id="qunatity" min="1">
+                                      <input  type="number" value="{{ $food->cart_qty }}" class="form-control prc" name ="quantity" required id="qunatity" min="1" max="10">
                                       <span class="text-danger">{{ $errors->first('quantity')}}</span>
                                       <input type="hidden" name="price" value ="{{(int)$food->price * (int)$food->cart_qty}}">
                                         <div class="input-group-append" data-toggle="tooltip" data-placement="top" title="Update Quantity">
